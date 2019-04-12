@@ -16,7 +16,18 @@ router.post('/movies', (req, res, next) => {
   })
   .catch((err)=>{
     console.log(err);
-  })
+  });
+
+  router.get('/movies', (req, res, next) => {
+    Movie.find({})
+    .then((movies)=>{
+      //res.json(movies);
+      res.render('movies', {movies});
+    })
+    .catch((err)=>{
+      console.log(err);
+    })
+  });
 
   router.get('/movie/:movieId', (req, res, next) => {
     var id = req.params.movieId;
@@ -34,3 +45,5 @@ router.post('/movies', (req, res, next) => {
 });
 
 module.exports = router;
+
+
